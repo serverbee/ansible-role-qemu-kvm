@@ -1,0 +1,30 @@
+---
+
+- name: Set libvirt-guests variable (ON_SHUTDOWN)
+  lineinfile:
+    path: /etc/sysconfig/libvirt-guests
+    regexp: 'ON_SHUTDOWN='
+    line: 'ON_SHUTDOWN={{ qemu_kvm_libvirtguests_onshutdown }}'
+  when: qemu_kvm_libvirtguests_onshutdown is defined
+  tags: libvirt-guests-configure
+
+- name: Start Libvirt daemon
+  service:
+    name: libvirtd
+    state: started
+
+- name: Make sure the libvirt-guests service is enabled
+  service:
+    name: libvirt-guests
+    enabled: yes
+
+- name: Make sure the libvirt-guests service is up and running
+  service:
+    name: libvirt-guests
+    state: started
+
+- name: Remove default network
+  virt_net:
+    name: default
+    state: absent
+  when: qemu_kvm_remove_default_network == "true"

@@ -1,0 +1,6 @@
+[virt7-kvm-common-candidate]
+name=virt7-kvm-common-candidate rebuilds of qemu-kvm-rhev
+baseurl=http://cbs.centos.org/repos/virt7-kvm-common-candidate/x86_64/os/
+enabled=1
+#skip_if_unavailable=1
+gpgcheck=0

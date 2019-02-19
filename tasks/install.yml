@@ -1,0 +1,22 @@
+---
+
+- name: Add yum repository for RHEV version of qemu-kvm
+  copy:
+    src: etc/yum.repos.d/virt7-kvm-common-candidate.repo
+    dest: /etc/yum.repos.d/virt7-kvm-common-candidate.repo
+    owner: root
+    group: root
+    mode: 0644
+  when: qemu_kvm_use_rhev_version == "true"
+
+- name: Install qemu-kvm and dependencies
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ qemu_kvm_packages }}"
+
+- name: Install RHEV version of qemu-kvm
+  yum:
+    name: qemu-kvm-ev
+    state: installed
+  when: qemu_kvm_use_rhev_version == "true"

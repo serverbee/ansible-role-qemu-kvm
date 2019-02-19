@@ -1,0 +1,7 @@
+---
+
+- include_tasks: install.yml
+
+- include_tasks: configure.yml
+  tags:
+    - libvirt-guests-configure

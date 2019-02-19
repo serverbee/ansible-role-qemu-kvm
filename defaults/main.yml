@@ -1,0 +1,13 @@
+---
+
+qemu_kvm_packages:
+  - qemu-kvm
+  - libvirt
+  - libvirt-client
+  - virt-install
+  - libguestfs-tools-c
+  - python-lxml
+
+qemu_kvm_use_rhev_version: "true"
+qemu_kvm_remove_default_network: "true"
+qemu_kvm_libvirtguests_onshutdown: "suspend"
