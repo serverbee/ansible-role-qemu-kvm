@@ -27,4 +27,4 @@
   virt_net:
     name: default
     state: absent
-  when: qemu_kvm_remove_default_network == "true"
+  when: qemu_kvm_remove_default_network

@@ -1,5 +1,8 @@
 ---
 
+- name: Add the OS specific variables
+  include_vars: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+
 - name: Add yum repository for RHEV version of qemu-kvm
   copy:
     src: etc/yum.repos.d/virt7-kvm-common-candidate.repo
@@ -7,16 +10,22 @@
     owner: root
     group: root
     mode: 0644
-  when: qemu_kvm_use_rhev_version == "true"
+  when:
+    - qemu_kvm_use_rhev_version
+    - ansible_distribution_major_version  == "7"
 
 - name: Install qemu-kvm and dependencies
   yum:
     name: "{{ item }}"
     state: installed
-  with_items: "{{ qemu_kvm_packages }}"
+  loop: "{{ qemu_kvm_packages }}"
+  tags:
+    - install
 
 - name: Install RHEV version of qemu-kvm
   yum:
     name: qemu-kvm-ev
     state: installed
-  when: qemu_kvm_use_rhev_version == "true"
+  when:
+    - qemu_kvm_use_rhev_version
+    - ansible_distribution_major_version  == "7"

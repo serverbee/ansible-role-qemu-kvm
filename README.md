@@ -6,7 +6,7 @@ This role install virtualization tools **qemu-kvm** with additional tools (libvi
 
 ### General
 * `qemu_kvm_packages`: [optional]: list of packages to be installed (see defaults/main.yml for detail)
-* `qemu_kvm_use_rhev_version`: [optional, default `true`]: set use or not **virt7-kvm-common-candidate** repo
+* `qemu_kvm_use_rhev_version`: [optional, default `true`]: set use or not **virt7-kvm-common-candidate** repo (el7 only)
 * `qemu_kvm_remove_default_network`: [optional, default `true`]: delete default qemu-kvm network
 
 ### Configure
