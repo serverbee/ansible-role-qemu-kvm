@@ -3,7 +3,7 @@
 dependencies: []
 
 galaxy_info:
-  role_name: qemu-kvm
+  role_name: qemu_kvm
   author: mr-yaky
   description: Role to configure KVM hypervisor hosts.
   company: "ServerBee, SL"
