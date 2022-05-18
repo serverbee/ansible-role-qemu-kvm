@@ -3,6 +3,5 @@ qemu_kvm_packages:
   - qemu-kvm
   - libvirt
   - libvirt-client
-  - virt-install
   - libguestfs-tools-c
   - python3-lxml
